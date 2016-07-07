@@ -16,7 +16,7 @@ namespace Snake
             x = _x;
             y = _y;
             sym = _sym;
-            Console.WriteLine("Создается точка");
+           
         }
         public void Draw()
         {
