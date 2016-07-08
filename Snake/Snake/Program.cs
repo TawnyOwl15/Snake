@@ -21,6 +21,7 @@ namespace Snake
             
             Line2 line2 = new Line2(17, 10, 30, '+');
             line2.Drow();
+
             Console.ReadLine();
 
         }               

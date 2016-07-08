@@ -6,24 +6,18 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
-    class Line2
+    class Line2 : Figure
     {
-        List<Point> hList;
+        
         public Line2(int x, int yUp, int yDown, char sym)
         {
-            hList = new List<Point>();
+            pList = new List<Point>();
             for (int y = yUp; y <= yDown; y++)
             {
                 Point p = new Point(x, y, sym);
-                hList.Add(p);
+                pList.Add(p);
             }
         }
-        public void Drow()
-        {
-            foreach (Point p in hList)
-            {
-                p.Draw();
-            }
-        }
+        
     }
 }
