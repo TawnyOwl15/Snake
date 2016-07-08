@@ -11,16 +11,18 @@ namespace Snake
         static void Main(string[] args)
         {
             Point p1 = new Point(1, 2, '*');
-            p1.Draw();
+            Snake snake = new Snake(p1, 5, Direction.RIGHT);
+            snake.Drow();
 
-            Point p2 = new Point(2, 8, '-');                
-            p2.Draw();
-
-            HorisontalLine line = new HorisontalLine(0,15,20,'-');
+          
+            HorisontalLine line = new HorisontalLine(0,60,0,'-');
             line.Drow();
-            
-            Line2 line2 = new Line2(17, 10, 30, '+');
+            HorisontalLine line3 = new HorisontalLine(0, 60, 15, '-');
+            line3.Drow();
+            Line2 line2 = new Line2(0, 0, 15, '-');
             line2.Drow();
+            Line2 line4 = new Line2(60, 0, 15, '-');
+            line4.Drow();
 
             Console.ReadLine();
 
