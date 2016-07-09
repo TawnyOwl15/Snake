@@ -11,28 +11,39 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            Point p1 = new Point(1, 2, '*');
-            Snake snake = new Snake(p1, 5, Direction.RIGHT);
+            Point p = new Point(1, 1, '*');
+            Snake snake = new Snake(p, 5, Direction.RIGHT);
             snake.Drow();
 
-            Console.SetBufferSize(40, 15);
+            Console.SetBufferSize(80, 25);
 
-            HorisontalLine line = new HorisontalLine(0, 40, 0, '-');
-            line.Drow();
-            HorisontalLine line3 = new HorisontalLine(0, 40, 15, '-');
-            line3.Drow();
-            Line2 line2 = new Line2(0, 0, 15, '-');
-            line2.Drow();
-            Line2 line4 = new Line2(40, 0, 15, '-');
-            line4.Drow();
+            HorisontalLine lineDown = new HorisontalLine(0, 79, 24, '-');
+            lineDown.Drow();
+            HorisontalLine lineUp = new HorisontalLine(0, 79, 0, '-');
+            lineUp.Drow();
+            Line2 lineLeft = new Line2(0, 0, 23, '-');
+            lineLeft.Drow();
+            Line2 lineRight = new Line2(79, 0, 23, '-');
+            lineRight.Drow();
 
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
-            Thread.Sleep(300);
-            snake.Move();
+            while (true)
+            {
+                if(Console.KeyAvailable)
+                {
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.LeftArrow)
+                    snake._direction = Direction.LEFT;
+                else if (key.Key == ConsoleKey.RightArrow)
+                    snake._direction = Direction.RIGHT;
+                else if (key.Key == ConsoleKey.DownArrow)
+                    snake._direction = Direction.DOWN;
+                else if (key.Key == ConsoleKey.UpArrow)
+                    snake._direction = Direction.UP;
+                }
+                Thread.Sleep(100);
+                snake.Move();
+            }
+            
 
             Console.ReadLine();
 
