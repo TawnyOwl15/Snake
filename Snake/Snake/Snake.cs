@@ -37,5 +37,17 @@ namespace Snake
             nextPoint.Move(1, _direction);
             return nextPoint;
         }
+        internal bool Eat(Point food)
+        {
+            Point head = GetNextPoint();
+            if (head.IsHit(food))
+            {
+                food.sym = head.sym;
+                pList.Add(food);
+                return true;
+            }
+            else
+                   return false;           
+        }
     }
 }

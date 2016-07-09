@@ -11,10 +11,7 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            Point p = new Point(1, 1, '*');
-            Snake snake = new Snake(p, 5, Direction.RIGHT);
-            snake.Drow();
-
+           
             Console.SetBufferSize(80, 25);
 
             HorisontalLine lineDown = new HorisontalLine(0, 79, 24, '-');
@@ -26,27 +23,59 @@ namespace Snake
             Line2 lineRight = new Line2(79, 0, 23, '-');
             lineRight.Drow();
 
+            Point p = new Point(1, 1, '*');
+            Snake snake = new Snake(p, 5, Direction.RIGHT);
+            snake.Drow();
+
+            FoodCreator foodCreator = new FoodCreator(80, 24, '$');
+            Point food = foodCreator.CreateFood();
+            food.Draw();
+
             while (true)
             {
-                if(Console.KeyAvailable)
+                if (snake.Eat(food))
                 {
-                ConsoleKeyInfo key = Console.ReadKey();
-                if (key.Key == ConsoleKey.LeftArrow)
-                    snake._direction = Direction.LEFT;
-                else if (key.Key == ConsoleKey.RightArrow)
-                    snake._direction = Direction.RIGHT;
-                else if (key.Key == ConsoleKey.DownArrow)
-                    snake._direction = Direction.DOWN;
-                else if (key.Key == ConsoleKey.UpArrow)
-                    snake._direction = Direction.UP;
+                    food = foodCreator.CreateFood();
+                    food.Draw();
+                }
+                else
+                {
+                    snake.Move();
+                }
+                Thread.Sleep(100);
+
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.LeftArrow)
+                        snake._direction = Direction.LEFT;
+                    else if (key.Key == ConsoleKey.RightArrow)
+                        snake._direction = Direction.RIGHT;
+                    else if (key.Key == ConsoleKey.DownArrow)
+                        snake._direction = Direction.DOWN;
+                    else if (key.Key == ConsoleKey.UpArrow)
+                        snake._direction = Direction.UP;
+                }
+            }
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.LeftArrow)
+                        snake._direction = Direction.LEFT;
+                    else if (key.Key == ConsoleKey.RightArrow)
+                        snake._direction = Direction.RIGHT;
+                    else if (key.Key == ConsoleKey.DownArrow)
+                        snake._direction = Direction.DOWN;
+                    else if (key.Key == ConsoleKey.UpArrow)
+                        snake._direction = Direction.UP;
                 }
                 Thread.Sleep(100);
                 snake.Move();
             }
+
             
-
-            Console.ReadLine();
-
         }               
     }
 }
